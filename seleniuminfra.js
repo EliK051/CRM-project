@@ -142,7 +142,7 @@ class SelenuimInfra {
   // Find and return element by type and value
   async findElementBy(locatorType, locatorValue, fromElement) {
     let element
-    await this.driver.sleep(500)
+    await this.driver.sleep(10000)
     try {
       if (fromElement) {
         element = await fromElement.findElement(By[locatorType](locatorValue))

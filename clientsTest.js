@@ -16,18 +16,23 @@ class clientTest{
         await this.clientpage.navigateToClientsPage();
     }
 
-
     async searchAndValidateClient(name){
         await this.clientpage.searchAndValidateClient(name)
     }
 
     async addCheck(name){//checks that a user doesn't exists ,then adding it, and making sure it appears    
-        await this.clientpage.searchAndValidateClient(name,"name");
+        let before=await this.clientpage.searchAndValidateClient(name,"name");
         await this.homepage.clickActions();
         name=name.split(" ");
         await this.actionspage.addClient(name[0],name[1],"India","Janice Alvarado","C")
         await this.homepage.clickClients();
-        await this.clientpage.searchAndValidateClient(`${name[0]} ${name[1]}`);
+        let after=await this.clientpage.searchAndValidateClient(`${name[0]} ${name[1]}`);
+        if(before!=after){
+            console.log(`SUCCESS: the client ${name} has been added`)
+        }
+        else{
+            console.log(`ERROR: the client ${name} failed to add`)
+        }
 
     }
 

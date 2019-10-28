@@ -12,7 +12,6 @@ class AnalyticsPage {
         catch (error) {
             console.log(`something went wrong with navigateToAnalyticsPage:${error}`)
         }
-
     }
 
     /*the function recieves "email" or "outstanding" and returns that number corresponding with the keyword */
@@ -36,23 +35,28 @@ class AnalyticsPage {
         catch (error) {
             console.log(`something went wrong with satisticInfo:${error}`)
         }
-
-
-
     }
-    async colorChangeValidation() {
-        console.log("starting validation of color")
-        let previousColor = await this.selenium.findElementBy("className", "color-btn")
-        previousColor = await previousColor.getText();
-        console.log(previousColor)
-        await this.selenium.clickElement("className", "color-btn")
-        let currentColor = await this.selenium.findElementBy("className", "color-btn")
-        currentColor = await currentColor.getText();
-        console.log(currentColor)
-        if (currentColor != previousColor) {
-            console.log(`succesfuly changed from ${currentColor} to ${previousColor}`)
-        }
 
+    async colorChangeValidation() {
+        try {
+            console.log("starting validation of color")
+            let previousColor = await this.selenium.findElementBy("className", "color-btn")
+            previousColor = await previousColor.getText();
+            console.log(previousColor)
+            await this.selenium.clickElement("className", "color-btn")
+            let currentColor = await this.selenium.findElementBy("className", "color-btn")
+            currentColor = await currentColor.getText();
+            console.log(currentColor)
+            if (currentColor != previousColor) {
+                console.log(`SUCCESS: succesfuly changed from ${currentColor} to ${previousColor}`)
+            }
+            else {
+                console.log(`ERROR: failed to change color from ${currentColor} to ${previousColor}`)
+            }
+        }
+        catch (error) {
+            console.log(`something went wrong with Colorchangevalidation: ${error}`)
+        }
     }
 
 }

@@ -36,17 +36,17 @@ class ClientsPage {
             if (fullName.toLowerCase() == input.toLowerCase()) {
                 console.log(`The client ${input} exists`)
                 return true;
+            } 
+            else{
+                console.log(`The client ${input} is not found`)
             }
-
-
-
         }
         catch (error) {
             console.log(`Something went wrong with SearchAndValidateClient:${error}`)
         }
-
     }
-    async searchOwner(input) {//make it either one function or seperate for all
+
+    async searchOwner(input) {
         try {
             await this.selenium.write("name", "css", ".search-clients>.select-css")
             await this.selenium.write(input, "css", ".search-clients>input[type='text']")
@@ -111,20 +111,11 @@ class ClientsPage {
                 console.log(`counting ${searchType} : ${currentPageListNum1}`)
                 await this.selenium.clickElement("css", "img[name='next']")
             }
-
-
             return currentPageListNum;
-
-
-
-
-
-
         }
         catch (error) {
             console.log(`Something went wrong with countProperty:${error}`)
         }
-
     }
 
 

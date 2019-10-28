@@ -33,23 +33,24 @@ class actionsTest {
         else {
             console.log(`transfer failed for ${cName} from ${previous} to ${current}`)
         }
-
-
-
-
     }
 
     async changeSaleStatus(name) {
         await this.homepage.clickClients();
         let previous = await this.clientpage.soldStatus(name);
-        console.log(`${name} curent sold status is:${previous}`)
+        console.log(`${name}'s sold status is: ${previous}`)
         console.log(`starting change of sold status`)
         await this.homepage.clickActions();
         await this.actionspage.updateFormFill(name, "sold", true)
         await this.homepage.clickClients();
         let current = await this.clientpage.soldStatus(name)
-        console.log(`${name} sold status is updated to:${current}`)
-
+        console.log(`${name}'s sold status is: ${current}`)
+        if(previous!=current){
+            console.log("SUCCESS: succesfuly changed sale status")
+        }
+        else{
+            console.log("ERROR: update sale status failed")
+        }
     }
 
 

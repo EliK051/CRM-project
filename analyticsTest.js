@@ -17,16 +17,17 @@ class analyticsTest {
     }
 
     async confirmOutStanding() {
+
         let statNum = await this.analyticpage.satisticInfo("outstanding")
         console.log(`on the stat page it presents ${statNum} outstanding clients`)
         await this.homepage.clickClients();
         let statCount = await this.clientpage.countProperty("sold","no")
         console.log(`on the clients page, the count is: ${statCount} outstanding clients`)
         if (statNum == statCount) {
-            console.log("the data of outstanding clients is correct")
+            console.log("SUCCESS: the data of outstanding clients is correct")
         }
         else {
-            console.log("the numbers do not match")
+            console.log("ERROR: the numbers do not match")
         }
     }
 
@@ -42,10 +43,10 @@ class analyticsTest {
         statCount = total - statCount
         console.log(`the counted number of email sent is :${statCount}`)
         if (statNum == statCount) {
-            console.log("the data of email sent is correct")
+            console.log("SUCCESS: the data of email sent is correct")
         }
         else {
-            console.log("the numbers do not match")
+            console.log("ERROR: the data of email sent is NOT correct")
         }
     }
 
@@ -53,12 +54,12 @@ class analyticsTest {
         this.analyticpage.colorChangeValidation();
     }
 
-
 }
 
 
-let test = new analyticsTest()
+let test = new analyticsTest();
 test.navigateToAnalyticsPage();
+// test.getHighestHeigh();
 // test.confirmOutStanding();//test 1
 // test.confirmEmailSent()//test 2
 // test.colorChangeValidation();//test 3
